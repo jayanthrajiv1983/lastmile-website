@@ -1,0 +1,150 @@
+# =============================================================================
+# Lastmile Logi Solutions — Netlify deployment configuration
+# Static multi-page HTML site (no build step). GitHub: jayanthrajiv1983/lastmile-website
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Build settings
+# Publish the repository root as-is; no build command required for static HTML.
+# Netlify auto-deploys on push when this repo is linked in the Netlify dashboard.
+# -----------------------------------------------------------------------------
+[build]
+  publish = "."
+  command = "node optimize.js"
+
+# -----------------------------------------------------------------------------
+# Clean URL rewrites (200 — internal rewrite, URL bar stays clean)
+# Maps extensionless paths to their .html files. Both /services and /services.html
+# remain accessible; internal nav links use .html and continue to work unchanged.
+# No 301 .html → clean redirects — avoids breaking relative links and hash anchors.
+#
+# SPA catch-all (/* → /index.html) intentionally omitted: this is a multi-page static
+# site, not a single-page app. A catch-all would misroute missing pages to the homepage.
+# -----------------------------------------------------------------------------
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/industries"
+  to = "/industries.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+# Trailing-slash normalization — canonical extensionless URLs without trailing slash
+[[redirects]]
+  from = "/services/"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/about/"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/industries/"
+  to = "/industries"
+  status = 301
+
+[[redirects]]
+  from = "/contact/"
+  to = "/contact"
+  status = 301
+
+# www ↔ apex redirect not configured — set preferred domain in Netlify UI
+# (Domain settings → Domain management → Set primary domain) once DNS is connected.
+# HTTP → HTTPS is enforced automatically by Netlify for all sites.
+
+# -----------------------------------------------------------------------------
+# Compression
+# Netlify serves gzip and Brotli automatically at the CDN edge. Do NOT set
+# Content-Encoding manually in [[headers]] — the platform handles negotiation
+# via Accept-Encoding from the client request.
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Security headers (all pages)
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    # CSP allows Google Fonts and self-hosted assets. Hero background is hero.webp.
+    # JSON-LD is non-executable (not subject to script-src). JS inline styles allowed.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# -----------------------------------------------------------------------------
+# Cache-Control — HTML (always revalidate so content updates deploy immediately)
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# -----------------------------------------------------------------------------
+# Cache-Control — static assets (long-lived; filenames are not content-hashed)
+# /assets/* covers css, js, images, and icons subdirectories.
+# Google Fonts are loaded from fonts.googleapis.com / fonts.gstatic.com (external).
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable, stale-while-revalidate=86400"
+
+# robots.txt and sitemap.xml — short cache so SEO updates propagate quickly
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# -----------------------------------------------------------------------------
+# Performance notes (no [[plugins]] required for static HTML)
+# - Preconnect/preload hints for fonts, CSS, and LCP images live in HTML <head>.
+# - Build runs `node optimize.js` to emit main.min.css and *.min.js (gitignored).
+# - Hero background is self-hosted at assets/images/hero.webp (same Unsplash source).
+# -----------------------------------------------------------------------------
