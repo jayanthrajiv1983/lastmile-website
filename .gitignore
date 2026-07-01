@@ -1,0 +1,32 @@
+﻿# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node (optimize.js)
+node_modules/
+
+# Generated minified assets (regenerate via optimize.js)
+assets/css/main.min.css
+assets/js/*.min.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Temporary / cache
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/

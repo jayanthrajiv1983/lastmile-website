@@ -1,0 +1,128 @@
+:root {
+  /* Brand colors */
+  --primary: #2563EB;
+  --primary-dark: #1D4ED8;
+  --primary-darker: #1E40AF;
+  --primary-light: #EFF6FF;
+  --primary-glow: rgba(37, 99, 235, 0.18);
+  --green: #22C55E;
+  --green-soft: #DCFCE7;
+  --green-dark: #166534;
+  --orange: #F59E0B;
+  --orange-soft: #FEF3C7;
+  --orange-dark: #92400E;
+
+  /* Neutrals */
+  --neutral-light: #9CA3AF;
+  --text: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6B7280;
+  --bg: #FFFFFF;
+  --bg-subtle: #F9FAFB;
+  --bg-muted: #F3F4F6;
+  --border: #E5E7EB;
+  --border-light: #F3F4F6;
+
+  /* Dark accents */
+  --dark: #0F172A;
+  --dark-secondary: #1E293B;
+  --dark-tertiary: #334155;
+
+  /* Typography */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.15vw, 0.8125rem);
+  --text-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  --text-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.5vw, 1.375rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 0.75vw, 1.75rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.25vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 1.75rem + 1.75vw, 3rem);
+  --text-5xl: clamp(2.75rem, 2rem + 2.5vw, 3.75rem);
+
+  /* Spacing scale — 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --section-padding: var(--space-20);
+  --section-padding-lg: var(--space-24);
+  --section-padding-xl: var(--space-32);
+  --max-width: min(1280px, 100% - 2rem);
+  --max-width-wide: min(1440px, 100% - 2.5rem);
+  --header-height: 80px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+
+  /* Shadows — multi-layer with brand tint */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 16px -4px rgba(37, 99, 235, 0.08), 0 4px 8px -4px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 32px -8px rgba(37, 99, 235, 0.1), 0 8px 16px -8px rgba(15, 23, 42, 0.08);
+  --shadow-xl: 0 24px 48px -12px rgba(37, 99, 235, 0.12), 0 12px 24px -8px rgba(15, 23, 42, 0.1);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(37, 99, 235, 0.06);
+  --shadow-card-hover: 0 8px 24px -4px rgba(37, 99, 235, 0.14), 0 16px 40px -8px rgba(15, 23, 42, 0.08);
+  --shadow-header: 0 4px 24px -4px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(15, 23, 42, 0.04);
+
+  /* Transitions & easing */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --transition: 0.25s var(--ease-premium);
+  --transition-slow: 0.5s var(--ease-premium);
+  --transition-reveal: 0.75s var(--ease-premium);
+  --hero-duration: 0.9s;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
+
+  /* Patterns */
+  --pattern-dot: radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.025) 1px, transparent 0);
+  --pattern-line: linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-padding: var(--space-24);
+    --section-padding-lg: var(--space-32);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --max-width: min(1280px, 100% - 2.5rem);
+    --max-width-wide: min(1440px, 100% - 3rem);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --max-width: min(1360px, 100% - 4rem);
+    --max-width-wide: min(1520px, 100% - 5rem);
+  }
+}
+
+@media (max-width: 374px) {
+  :root {
+    --section-padding: var(--space-12);
+    --header-height: 64px;
+  }
+}
