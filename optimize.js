@@ -23,12 +23,23 @@ function minifyCss(source) {
 }
 
 function minifyJs(source) {
-  return source
+  const strings = [];
+  const protectedSource = source.replace(
+    /'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|`(?:\\.|[^`\\])*`/g,
+    (match) => {
+      strings.push(match);
+      return `__STR${strings.length - 1}__`;
+    }
+  );
+
+  const minified = protectedSource
     .replace(/\/\*[\s\S]*?\*\//g, '')
     .replace(/(^|\s)\/\/.*$/gm, '$1')
     .replace(/\s+/g, ' ')
-    .replace(/\s*([{}();,:<>+\-*/=|&?[\]])\s*/g, '$1')
+    .replace(/\s*([{}();,:<>+*/=|&?[\]])\s*/g, '$1')
     .trim();
+
+  return minified.replace(/__STR(\d+)__/g, (_, index) => strings[Number(index)]);
 }
 
 const cssChain = [

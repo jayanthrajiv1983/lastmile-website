@@ -33,38 +33,46 @@
 
   applyStaggerDelays();
 
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  function showAllReveals() {
     revealElements.forEach(function (el) {
       el.classList.add('is-visible');
     });
+  }
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    showAllReveals();
     return;
   }
 
-  var revealObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var el = entry.target;
-          el.classList.add('is-visible');
-          el.style.willChange = 'transform, opacity';
+  try {
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            el.classList.add('is-visible');
+            el.style.willChange = 'transform, opacity';
 
-          el.addEventListener('transitionend', function onEnd(event) {
-            if (event.target === el && (event.propertyName === 'transform' || event.propertyName === 'opacity')) {
-              el.style.willChange = '';
-              el.removeEventListener('transitionend', onEnd);
-            }
-          });
+            el.addEventListener('transitionend', function onEnd(event) {
+              if (event.target === el && (event.propertyName === 'transform' || event.propertyName === 'opacity')) {
+                el.style.willChange = '';
+                el.removeEventListener('transitionend', onEnd);
+              }
+            });
 
-          revealObserver.unobserve(el);
-        }
-      });
-    },
-    { root: null, rootMargin: '0px 0px -8% 0px', threshold: [0, 0.12, 0.2] }
-  );
+            revealObserver.unobserve(el);
+          }
+        });
+      },
+      { root: null, rootMargin: '0px 0px -8% 0px', threshold: [0, 0.12, 0.2] }
+    );
 
-  revealElements.forEach(function (el) {
-    revealObserver.observe(el);
-  });
+    revealElements.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } catch (err) {
+    showAllReveals();
+  }
 
   document.querySelectorAll('.section-header.reveal, .section-header .reveal').forEach(function (header) {
     var divider = header.querySelector('.section-divider') || header.parentElement && header.parentElement.querySelector('.section-divider');
