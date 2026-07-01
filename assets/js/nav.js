@@ -94,12 +94,18 @@
     });
   }
 
-  /* Active nav state per page */
-  var currentPath = window.location.pathname;
-  var currentPage = currentPath.split('/').pop() || 'index.html';
-  if (!currentPage || currentPage === '' || !/\.html$/i.test(currentPage)) {
-    currentPage = 'index.html';
+  /* Active nav state per page (supports .html paths and Netlify clean URLs) */
+  function resolvePageName(pathname) {
+    if (!pathname || pathname === '/' || /\/index\.html$/i.test(pathname)) {
+      return 'index.html';
+    }
+    var segment = pathname.split('/').filter(Boolean).pop() || 'index.html';
+    if (segment === 'index.html') return 'index.html';
+    if (/\.html$/i.test(segment)) return segment;
+    return segment + '.html';
   }
+
+  var currentPage = resolvePageName(window.location.pathname);
 
   document.querySelectorAll('.site-nav a[href]').forEach(function (link) {
     var href = link.getAttribute('href').split('#')[0];

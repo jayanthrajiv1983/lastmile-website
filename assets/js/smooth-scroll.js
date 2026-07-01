@@ -12,8 +12,10 @@
 
   function normalizePage(path) {
     if (!path || path === '/' || path === './') return 'index.html';
-    var name = path.split('/').pop();
-    return name || 'index.html';
+    var name = path.split('/').filter(Boolean).pop();
+    if (!name || name === 'index.html') return 'index.html';
+    if (/\.html$/i.test(name)) return name;
+    return name + '.html';
   }
 
   function scrollToTarget(target) {

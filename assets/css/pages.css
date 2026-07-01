@@ -390,6 +390,7 @@ address {
 .legal-section {
   margin-top: var(--space-12);
   padding-bottom: var(--space-8);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
 
 .legal-section h2 {
