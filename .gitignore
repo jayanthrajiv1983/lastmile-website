@@ -12,17 +12,25 @@ Desktop.ini
 # Node (optimize.js)
 node_modules/
 
+# Build output
+build/
+dist/
+
 # Generated minified assets (regenerate via optimize.js)
 assets/css/main.min.css
+assets/css/*.min.css
 assets/js/*.min.js
 
 # Logs
 *.log
 npm-debug.log*
 
-# Environment
+# Environment and secrets
 .env
+.env.*
 .env.local
+*.pem
+credentials*
 
 # Temporary / cache
 *.tmp
