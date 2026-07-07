@@ -25,18 +25,26 @@
 
 .page-loader-logo {
   width: auto;
-  height: 72px;
-  max-width: 200px;
+  height: 148px;
+  max-width: 420px;
   object-fit: contain;
   border-radius: var(--radius-md);
   background: #fff;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1.1rem;
   box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.06);
   animation: loaderLogoFade 0.6s var(--ease-premium) forwards;
 }
 
+@media (max-width: 480px) {
+  .page-loader-logo {
+    height: 120px;
+    max-width: min(340px, 92vw);
+    padding: 0.65rem 0.9rem;
+  }
+}
+
 .page-loader-bar {
-  width: 120px;
+  width: 160px;
   height: 2px;
   background: var(--bg-muted);
   border-radius: 999px;

@@ -63,7 +63,7 @@
   --section-padding-xl: var(--space-32);
   --max-width: min(1280px, 100% - 2rem);
   --max-width-wide: min(1440px, 100% - 2.5rem);
-  --header-height: 80px;
+  --header-height: 96px;
 
   /* Radii */
   --radius-sm: 8px;
@@ -123,6 +123,10 @@
 @media (max-width: 374px) {
   :root {
     --section-padding: var(--space-12);
-    --header-height: 64px;
+    --header-height: 80px;
+  }
+
+  .page-home {
+    --header-height: 88px;
   }
 }

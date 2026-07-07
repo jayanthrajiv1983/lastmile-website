@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var HEADER_OFFSET = 72;
+  var HEADER_OFFSET = 96;
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   document.documentElement.style.scrollPaddingTop = HEADER_OFFSET + 'px';
