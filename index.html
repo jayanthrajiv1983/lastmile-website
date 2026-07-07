@@ -355,7 +355,60 @@
         </div>
       </section>
 
-      <!-- 5. Industries -->
+      <!-- 5. Warehouse In Action -->
+      <section class="section warehouse-action-section" aria-labelledby="warehouse-action-heading">
+        <div class="warehouse-action-wrap">
+          <div class="section-header reveal">
+            <span class="section-eyebrow">Warehouse In Action</span>
+            <h2 id="warehouse-action-heading">Warehouse In Action</h2>
+            <p>Take a closer look at how Lastmile manages inventory, warehousing, fulfillment and distribution with precision and efficiency.</p>
+            <div class="section-divider" aria-hidden="true"></div>
+          </div>
+          <div class="warehouse-action-masonry reveal-stagger" id="warehouse-action-gallery">
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="0" aria-label="Open warehouse image 1">
+                <img src="assets/images/warehouse-action-1.webp" alt="Warehouse aisle with organized pallet inventory" width="900" height="1200" loading="lazy" decoding="async">
+              </button>
+            </figure>
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="1" aria-label="Open warehouse image 2">
+                <img src="assets/images/warehouse-action-2.webp" alt="Order processing and fulfillment workstations" width="900" height="700" loading="lazy" decoding="async">
+              </button>
+            </figure>
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="2" aria-label="Open warehouse image 3">
+                <img src="assets/images/warehouse-action-3.webp" alt="Storage zones managed for high-volume operations" width="900" height="1100" loading="lazy" decoding="async">
+              </button>
+            </figure>
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="3" aria-label="Open warehouse image 4">
+                <img src="assets/images/warehouse-action-4.webp" alt="Distribution staging area for scheduled dispatch" width="900" height="760" loading="lazy" decoding="async">
+              </button>
+            </figure>
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="4" aria-label="Open warehouse image 5">
+                <img src="assets/images/warehouse-action-5.webp" alt="Warehouse operations team handling inventory movement" width="900" height="1050" loading="lazy" decoding="async">
+              </button>
+            </figure>
+            <figure class="warehouse-action-item reveal">
+              <button class="warehouse-action-trigger" type="button" data-gallery-index="5" aria-label="Open warehouse image 6">
+                <img src="assets/images/warehouse-action-6.webp" alt="Integrated warehousing and dispatch workflow in action" width="900" height="680" loading="lazy" decoding="async">
+              </button>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="warehouse-lightbox" id="warehouse-lightbox" aria-hidden="true" role="dialog" aria-label="Warehouse image viewer">
+        <button class="warehouse-lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+        <button class="warehouse-lightbox-nav warehouse-lightbox-prev" type="button" aria-label="Previous image">&#10094;</button>
+        <figure class="warehouse-lightbox-figure">
+          <img id="warehouse-lightbox-image" src="" alt="">
+        </figure>
+        <button class="warehouse-lightbox-nav warehouse-lightbox-next" type="button" aria-label="Next image">&#10095;</button>
+      </div>
+
+      <!-- 6. Industries -->
       <section class="section section-alt" aria-labelledby="industries-heading">
         <div class="container">
           <div class="section-header reveal">
@@ -831,6 +884,7 @@
   <script src="assets/js/scroll-reveal.min.js" defer></script>
   <script src="assets/js/animations.min.js" defer></script>
   <script src="assets/js/process-flow.min.js" defer></script>
+  <script src="assets/js/gallery-lightbox.min.js" defer></script>
   <script src="assets/js/main.min.js" defer></script>
 </body>
 </html>
